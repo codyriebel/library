@@ -12,21 +12,25 @@ Book.prototype.info = function() {
   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead}`
 };
 
+const test = new Book('title', 'author', 42, true);
+
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 
 function addBookToLibrary() {
   // get book details from input fields
   const newBook = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
+  myLibrary.push(test);
   myLibrary.push(newBook);
 }
 
 function displayBooks() {
-  const bookDiv = document.querySelector('.books');
-
-  for (const book in myLibrary) {
-    bookDiv.textContent = book;
+  const bookContainer = document.querySelector(".bookContainer");
+  const card = document.createElement(div.card);
+  bookContainer.appendChild(card);
+  for (const book of myLibrary) {
+    bookDiv.textContent += book.info();
   }
 }
 
 addBookToLibrary();
-console.log(myLibrary);
+displayBooks();
