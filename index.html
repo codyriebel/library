@@ -6,7 +6,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bookContainer"></div>
+  <div class="container">
+    <table class="bookTable">
+      <thead>
+        <tr>
+          <td>TITLE</td>
+          <td>AUTHOR</td>
+          <td>PAGES</td>
+          <td>READ</td>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <dialog>
+      <form action="" >
+        <label for="title">Title:</label>
+        <input id="title" type="text" class="title"/>
+        <label for="author">Author:</label>
+        <input id="author" type="text" class="author"/>
+        <label for="pages">Pages:</label>
+        <input id="pages" type="number" class="pages"/>
+        <label for="read">Read:</label>
+        <input id="read" type="checkbox" class="read"/>
+        <button class="submit">SUBMIT</button>
+        <button class="cancel" formmethod="dialog">CANCEL</button>
+    </form>
+    </dialog>
+    <button class="newBook">NEW BOOK</button>
+  </div>
 </body>
 <script src="script.js"></script>
 </html>
