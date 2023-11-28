@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Library</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -20,7 +21,7 @@
       </tbody>
     </table>
     <dialog>
-      <form action="" >
+      <form>
         <label for="title">Title:</label>
         <input id="title" type="text" class="title"/>
         <label for="author">Author:</label>
@@ -29,12 +30,12 @@
         <input id="pages" type="number" class="pages"/>
         <label for="read">Read:</label>
         <input id="read" type="checkbox" class="read"/>
-        <button class="submit">SUBMIT</button>
+        <button class="submit" type="submit" formmethod="dialog">SUBMIT</button>
         <button class="cancel" formmethod="dialog">CANCEL</button>
     </form>
     </dialog>
     <button class="newBook">NEW BOOK</button>
   </div>
 </body>
-<script src="script.js"></script>
+
 </html>

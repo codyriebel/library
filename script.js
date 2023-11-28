@@ -5,48 +5,35 @@ function Book(title, author, numPages, isRead) {
   this.title = title;
   this.author = author;
   this.numPages = numPages;
-  this.isRead = isRead ? "read" : "not read yet";
+  this.isRead = isRead ? "✔️" : "✘";
 }
-
-// Book.prototype.info = function() {
-//   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead}`
-// };
-
-const test = new Book("title", "author", 42, true);
 
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-  const bookTable = document.querySelector(".bookTable tbody");    const row = document.createElement("tr");
-  bookTable.appendChild(row);
-  for (const bookData in book) {
-    const td = document.createElement("td");
-    td.textContent = book[bookData];
-    row.appendChild(td);
+function addBookToLibrary(newBook) {
+  myLibrary.push(newBook);
+}
+
+function displayBooks() {
+  const bookTable = document.querySelector('tbody');
+
+  for (libraryBook of myLibrary) {
+
+    const row = document.createElement('tr');
+    row.classList.add(libraryBook.title);
+    bookTable.appendChild(row);
+    
+    const bookProperties = ['title', 'author', 'numPages', 'isRead'];
+
+    for (i in bookProperties) {
+      const td = document.createElement('td');
+      row.appendChild(td);
+      td.textContent = libraryBook[bookProperties[i]];
+    }
   }
 }
 
-const dialog = document.querySelector("dialog");
-const newBookButton = document.querySelector(".newBook");
-const submitNewBook = document.querySelector(".submit");
-const cancel = document.querySelector(".cancel");
+addBookToLibrary(hobbit);
+displayBooks();
 
-
-newBookButton.addEventListener("click", () => {
-  dialog.showModal();
-});
-
-submitNewBook.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const titleInput = document.querySelector("dialog .title");
-  const authorInput = document.querySelector("dialog .author");
-  const pagesInput = document.querySelector("dialog .pages");
-  const readBox = document.querySelector("dialog .read");
-
-  const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, readBox.checked);
-  dialog.close();
-
-  addBookToLibrary(newBook);
-});
+displayBooks();
