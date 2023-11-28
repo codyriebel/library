@@ -15,12 +15,17 @@ function addBookToLibrary(newBook) {
 }
 
 function displayBooks() {
-  const bookTable = document.querySelector('tbody');
+  const bookRowsContainer = document.querySelector('tr.container');
+  bookRowsContainer.remove();
+ 
+  const bookTableBody = document.querySelector('tbody');
+  const bookTable = document.createElement('div');
+  bookTable.classList.add('container');
+  bookTableBody.appendChild(bookTable);
 
   for (libraryBook of myLibrary) {
 
     const row = document.createElement('tr');
-    row.classList.add(libraryBook.title);
     bookTable.appendChild(row);
     
     const bookProperties = ['title', 'author', 'numPages', 'isRead'];
