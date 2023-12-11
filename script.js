@@ -9,23 +9,34 @@ function Book(title, author, numPages, isRead) {
   this.isRead = isRead ? "✔️" : "✘";
 }
 
+function removeBook(e) {
+  const bookIndex = e.target.parentElement.classList.value;
+  myLibrary.splice(bookIndex, 1);
+  e.target.parentElement.remove();
+}
+
 function displayBooks() {
-  const bookTable = document.querySelector('tbody');
-  bookTable.textContent = '';
+  const bookTable = document.querySelector("tbody");
+  bookTable.textContent = "";
   
   for (libraryBook of myLibrary) {
-    const row = document.createElement('tr');
+    const row = document.createElement("tr");
     const bookIndex = myLibrary.indexOf(libraryBook);
     row.classList.add(bookIndex);
     bookTable.appendChild(row);
     
-    const bookProperties = ['title', 'author', 'numPages', 'isRead'];
+    const bookProperties = ["title", "author", "numPages", "isRead"];
 
     for (i in bookProperties) {
-      const td = document.createElement('td');
+      const td = document.createElement("td");
       row.appendChild(td);
       td.textContent = libraryBook[bookProperties[i]];
     }
+
+    const removeBookButton = document.createElement("button");
+    row.appendChild(removeBookButton);
+    removeBookButton.textContent = "delete";
+    removeBookButton.addEventListener("click", removeBook)
   }
 }
 
@@ -48,9 +59,9 @@ function submitBook() {
     read.checked
   )
 
-  title.value = '';
-  author.value = '';
-  pages.value = '';
+  title.value = "";
+  author.value = "";
+  pages.value = "";
   read.checked = false;
 
 }
