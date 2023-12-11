@@ -1,3 +1,8 @@
+:root {
+  --primaryColor: rgb(17, 198, 230);
+  --grayColor: rgb(207, 207, 207);
+}
+
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -7,19 +12,93 @@ body {
   justify-content: center;
 }
 
+.newBook {
+  background-color: var(--primaryColor);
+  color: white;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+button.newBook {
+  margin-bottom: 20px;
+}
+
+dialog {
+  border: none;
+  border-radius: 5px;
+}
+
+dialog.newBook form {
+  display: grid;
+  grid-template: repeat(200px, 5) / 1fr 4fr;
+  gap: 10px;
+}
+
+dialog label {
+  grid-column: 1;
+}
+
+dialog input {
+  grid-column: 2;
+  justify-self: left;
+  border: solid 1px var(--grayColor);
+  border-radius: 5px;
+  
+}
+
+dialog button {
+  grid-column: span 2;
+  color: white;
+  width: 50%;
+  justify-self: center;
+}
+
+button.submit {
+  background-color: rgb(19, 185, 116);
+}
+
+button.cancel {
+  background-color: rgb(238, 76, 76);
+}
+
+
+
 .bookTable {
   display: grid;
-  
+  width: clamp(75vw, 85vw, 90vw);
+}
+
+.bookTable thead {
+  font-style: normal;
+  font-weight: bold;
 }
 
 tr {
   display: grid;
-  grid-template-columns: repeat(2, 3fr) repeat(3, 65px);
-  border: solid 2px black;
+  grid-template-columns: repeat(2, 3fr) 75px repeat(2, 55px);
+  border-bottom: solid 1px var(--grayColor);
+  gap: 20px;
 }
 
 td {
-  
-  border-right: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
+
+.title, .author, .numPages {
+  justify-content: flex-start;
+}
+
+tbody .title {
+  font-style: italic;
+}
+
+
 

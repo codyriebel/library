@@ -43,6 +43,7 @@ function displayBooks() {
       const td = document.createElement("td");
       row.appendChild(td);
       td.textContent = libraryBook[bookProperties[i]];
+      td.classList.add(bookProperties[i]);
     }
 
     const readTd = document.createElement("td");
