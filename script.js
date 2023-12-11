@@ -9,10 +9,25 @@ function Book(title, author, numPages, isRead) {
   this.isRead = isRead ? "✔️" : "✘";
 }
 
+function toggleRead(e) {
+  const bookIndex = e.target.parentElement.classList.value;
+  const isRead = myLibrary[bookIndex].isRead;
+  switch (isRead) {
+    case "✔️":
+      myLibrary[bookIndex].isRead = "✘";
+      break;
+    case "✘":
+      myLibrary[bookIndex].isRead = "✔️";
+      break;
+  }
+  displayBooks();
+}
+
 function removeBook(e) {
   const bookIndex = e.target.parentElement.classList.value;
   myLibrary.splice(bookIndex, 1);
   e.target.parentElement.remove();
+  displayBooks();
 }
 
 function displayBooks() {
@@ -32,6 +47,11 @@ function displayBooks() {
       row.appendChild(td);
       td.textContent = libraryBook[bookProperties[i]];
     }
+
+    const toggleReadButton = document.createElement("button");
+    row.appendChild(toggleReadButton);
+    toggleReadButton.textContent = "toggle read";
+    toggleReadButton.addEventListener("click", toggleRead)
 
     const removeBookButton = document.createElement("button");
     row.appendChild(removeBookButton);
@@ -63,7 +83,6 @@ function submitBook() {
   author.value = "";
   pages.value = "";
   read.checked = false;
-
 }
 
 
@@ -76,4 +95,6 @@ submitBookButton.addEventListener("click", submitBook)
 
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary("test", "gfdsfen", 23, true);
+addBookToLibrary("title1", "author1", 1, true);
+addBookToLibrary("title2", "author2", 2, true);
+addBookToLibrary("title3", "author3", 3, true);
