@@ -1,0 +1,25 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.bookTable {
+  display: grid;
+  
+}
+
+tr {
+  display: grid;
+  grid-template-columns: repeat(2, 3fr) repeat(3, 65px);
+  border: solid 2px black;
+}
+
+td {
+  
+  border-right: solid 1px black;
+}
+

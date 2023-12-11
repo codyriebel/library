@@ -1,32 +1,29 @@
 const myLibrary = [];
 
-
-function Book(title, author, numPages, isRead) {
-  // the constructor...
-  this.title = title;
-  this.author = author;
-  this.numPages = numPages;
-  this.isRead = isRead ? "✔️" : "✘";
+class Book {
+  constructor(title, author, numPages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.numPages = numPages;
+    this.isRead = isRead;
+  }
 }
 
 function toggleRead(e) {
-  const bookIndex = e.target.parentElement.classList.value;
-  const isRead = myLibrary[bookIndex].isRead;
-  switch (isRead) {
-    case "✔️":
-      myLibrary[bookIndex].isRead = "✘";
-      break;
-    case "✘":
-      myLibrary[bookIndex].isRead = "✔️";
-      break;
+  const bookIndex = e.target.parentElement.parentElement.classList.value;
+  if (myLibrary[bookIndex].isRead) {
+    myLibrary[bookIndex].isRead = false;
+  } else {
+    myLibrary[bookIndex].isRead = true;
   }
+  
   displayBooks();
 }
 
 function removeBook(e) {
-  const bookIndex = e.target.parentElement.classList.value;
+  const bookIndex = e.target.parentElement.parentElement.classList.value;
   myLibrary.splice(bookIndex, 1);
-  e.target.parentElement.remove();
+  e.target.parentElement.parentElement.remove();
   displayBooks();
 }
 
@@ -34,13 +31,13 @@ function displayBooks() {
   const bookTable = document.querySelector("tbody");
   bookTable.textContent = "";
   
-  for (libraryBook of myLibrary) {
+  for (const libraryBook of myLibrary) {
     const row = document.createElement("tr");
     const bookIndex = myLibrary.indexOf(libraryBook);
     row.classList.add(bookIndex);
     bookTable.appendChild(row);
     
-    const bookProperties = ["title", "author", "numPages", "isRead"];
+    const bookProperties = ["title", "author", "numPages"];
 
     for (i in bookProperties) {
       const td = document.createElement("td");
@@ -48,14 +45,22 @@ function displayBooks() {
       td.textContent = libraryBook[bookProperties[i]];
     }
 
+    const readTd = document.createElement("td");
+    row.appendChild(readTd);
     const toggleReadButton = document.createElement("button");
-    row.appendChild(toggleReadButton);
-    toggleReadButton.textContent = "toggle read";
+    readTd.appendChild(toggleReadButton);
+    if (libraryBook.isRead) {
+      toggleReadButton.textContent = "📗"
+    } else {
+      toggleReadButton.textContent = "🕮"
+    }
     toggleReadButton.addEventListener("click", toggleRead)
 
+    const removeTd = document.createElement("td");
+    row.appendChild(removeTd);
     const removeBookButton = document.createElement("button");
-    row.appendChild(removeBookButton);
-    removeBookButton.textContent = "delete";
+    removeTd.appendChild(removeBookButton);
+    removeBookButton.textContent = "🗑️";
     removeBookButton.addEventListener("click", removeBook)
   }
 }
@@ -96,5 +101,5 @@ submitBookButton.addEventListener("click", submitBook)
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("title1", "author1", 1, true);
-addBookToLibrary("title2", "author2", 2, true);
+addBookToLibrary("title2", "author2", 2, false);
 addBookToLibrary("title3", "author3", 3, true);
