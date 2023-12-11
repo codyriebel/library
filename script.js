@@ -9,14 +9,6 @@ function Book(title, author, numPages, isRead) {
   this.isRead = isRead ? "✔️" : "✘";
 }
 
-const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-const test2 = new Book("test", "gfdsfen", 23, true);
-const test3 = new Book("test3", "baleen", 546, false);
-
-function addBookToLibrary(newBook) {
-  myLibrary.push(newBook);
-}
-
 function displayBooks() {
   const bookTable = document.querySelector('tbody');
   bookTable.textContent = '';
@@ -37,7 +29,40 @@ function displayBooks() {
   }
 }
 
-addBookToLibrary(hobbit);
-addBookToLibrary(test2);
-displayBooks();
-displayBooks();
+function addBookToLibrary(title, author, pages, read) {
+  const newBook = new Book(title, author, pages, read);
+  myLibrary.push(newBook);
+  displayBooks();
+}
+
+function submitBook() {
+  const title = document.querySelector("#title");
+  const author = document.querySelector("#author");
+  const pages = document.querySelector("#pages");
+  const read = document.querySelector("#read");
+
+  addBookToLibrary(
+    title.value, 
+    author.value, 
+    pages.value, 
+    read.checked
+  )
+
+  title.value = '';
+  author.value = '';
+  pages.value = '';
+  read.checked = false;
+
+}
+
+
+const newBookButton = document.querySelector("button.newBook");
+const dialog = document.querySelector("dialog.newBook");
+const submitBookButton = document.querySelector("dialog.newBook .submit");
+
+newBookButton.addEventListener("click", () => dialog.showModal());
+submitBookButton.addEventListener("click", submitBook)
+
+
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
+addBookToLibrary("test", "gfdsfen", 23, true);
