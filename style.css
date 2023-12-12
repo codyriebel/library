@@ -1,7 +1,10 @@
 :root {
   --primaryColor: rgb(17, 198, 230);
   --grayColor: rgb(207, 207, 207);
+  --greenColor: rgb(21, 206, 144);
+  --bg: rgb(230, 243, 245);
 }
+
 
 * {
   font-family: Arial, Helvetica, sans-serif;
@@ -9,7 +12,10 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  background-color: var(--bg);
 }
 
 .newBook {
@@ -24,13 +30,40 @@ button {
   font-weight: bold;
 }
 
+button.newBook, button.delete {
+  box-shadow: var(--grayColor) 4px 4px 4px;
+}
+
+button:hover {
+  filter: brightness(90%);
+  transition: 0.5s;
+}
+
+@keyframes bubble {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 button.newBook {
   margin-bottom: 20px;
+  padding: 10px 30px;
+}
+
+button.newBook:hover {
+  animation: bubble 0.4s ease-out;
 }
 
 dialog {
   border: none;
   border-radius: 5px;
+  box-shadow: rgb(179, 179, 179) 8px 8px 8px;
 }
 
 dialog.newBook form {
@@ -56,17 +89,25 @@ dialog button {
   color: white;
   width: 50%;
   justify-self: center;
+  box-shadow: rgb(92, 92, 92) 4px 4px 4px;
 }
 
 button.submit {
-  background-color: rgb(19, 185, 116);
+  background-color: var(--greenColor);
 }
 
 button.cancel {
-  background-color: rgb(238, 76, 76);
+  background-color: white;
+  color: var(--greenColor);
 }
 
+button.delete {
+  color: red;
+}
 
+button.book, button.delete {
+  background-color: var(--bg);
+}
 
 .bookTable {
   display: grid;
@@ -92,7 +133,7 @@ td {
   padding: 10px;
 }
 
-.title, .author, .numPages {
+.title, .author {
   justify-content: flex-start;
 }
 
@@ -100,5 +141,6 @@ tbody .title {
   font-style: italic;
 }
 
-
-
+footer {
+  margin-top: 40px;
+}

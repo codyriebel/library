@@ -49,6 +49,7 @@ function displayBooks() {
     const readTd = document.createElement("td");
     row.appendChild(readTd);
     const toggleReadButton = document.createElement("button");
+    toggleReadButton.classList.add("book");
     readTd.appendChild(toggleReadButton);
     if (libraryBook.isRead) {
       toggleReadButton.textContent = "📗"
@@ -61,7 +62,8 @@ function displayBooks() {
     row.appendChild(removeTd);
     const removeBookButton = document.createElement("button");
     removeTd.appendChild(removeBookButton);
-    removeBookButton.textContent = "🗑️";
+    removeBookButton.classList.add('delete');
+    removeBookButton.textContent = "❌";
     removeBookButton.addEventListener("click", removeBook)
   }
 }
